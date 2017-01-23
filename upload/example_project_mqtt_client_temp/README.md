@@ -1,0 +1,1 @@
+This is example of **hierarchy** which should be in ***upload/ directory*** (Simply move this to folder up).

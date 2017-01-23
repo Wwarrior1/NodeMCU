@@ -1,0 +1,81 @@
+#!/bin/bash
+
+if [ $# -ne 5 ]; then
+
+    echo "Give firmware binary file (click TAB...)"
+    echo -n ": "
+    read -e -p "" FIRMWARE
+
+    echo ""
+    # SHOW PORTS
+    for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
+    (
+        syspath="${sysdevpath%/dev}"
+        devname="$(udevadm info -q name -p $syspath)"
+        [[ "$devname" == "bus/"* ]] && continue
+        eval "$(udevadm info -q property --export -p $syspath)"
+        [[ -z "$ID_SERIAL" ]] && continue
+        echo "/dev/$devname - $ID_SERIAL"
+    )
+    done
+
+    echo ""
+    echo "Give port (default: ttyUSB0)"
+    echo -n ": "
+    read USB_read
+
+    echo "Give SDK binary file (default: esp_init_data_default.bin)"
+    echo -n ": "
+    read SDK_read
+
+    echo "Give baud rate (default: 921600)"
+    echo -n ": "
+    read BAUDRATE_read
+
+    echo "Give flash size (default: 32m is 4MB)"
+    echo -n ": "
+    read FLASHSIZE_read
+
+else
+    FIRMWARE=$1
+    USB="--port /dev/$2"
+    SDK=$3
+    BAUDRATE="$4"
+    FLASHSIZE="-fs $5"
+fi
+
+
+if [ -z "$USB_read" ]; then
+    USB=" "
+else
+    USB="--port /dev/$USB_read"
+fi
+
+
+if [ -z "$SDK_read" ]; then
+    SDK="esp_init_data_default.bin"
+else
+    SDK="$SDK_read"
+fi
+
+
+if [ -z "$BAUDRATE_read" ]; then
+    BAUDRATE="-b 921600"
+else
+    BAUDRATE="-b $BAUDRATE_read"
+fi
+
+
+if [ -z "$FLASHSIZE_read" ]; then
+    FLASHSIZE="-fs 32m"
+else
+    FLASHSIZE="-fs $FLASHSIZE_read"
+fi
+
+
+if [ ! -z "$FIRMWARE" ]; then
+    sudo ./esptool.py $USB $BAUDRATE write_flash $FLASHSIZE -fm dio 0x00000 $FIRMWARE 0x3fc000 $SDK
+fi
+
+
+

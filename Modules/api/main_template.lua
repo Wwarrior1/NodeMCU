@@ -1,0 +1,23 @@
+-- -------------------------------------------------------------------
+-- MAIN TEMPLATE
+-- Insert here your code to run specific project.
+-- -------------------------------------------------------------------
+
+-- Run module to be loaded to RAM all the time
+-- -------------------------------------------------------------------
+--    if file.exists("xyz.lc") then
+--        require("xyz")                            -- Run compiled code if it exists
+--    else
+--        print("(!) Module 'xyz' not exist.")
+--    end
+
+-- Run module to be loaded to RAM once and cleaned up after invocation
+-- -------------------------------------------------------------------
+--    if file.exists("xyz.lua") then
+--        tmp = require("xyz").compileAllFiles()    -- Run function from compiled code if it exists
+--        tmp = nil                                 -- little cleanup of required function
+--        require("xyz").init()                     -- CLEANUP invoked from module (nil reference to module)
+--        collectgarbage()                          -- Ensure that nilled module will be removed from RAM
+--    else
+--        print("(!) Module 'xyz' not exist.")
+--    end

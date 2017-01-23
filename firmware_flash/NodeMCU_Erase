@@ -1,0 +1,33 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+
+    # SHOW PORTS
+    for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
+    (
+        syspath="${sysdevpath%/dev}"
+        devname="$(udevadm info -q name -p $syspath)"
+        [[ "$devname" == "bus/"* ]] && continue
+        eval "$(udevadm info -q property --export -p $syspath)"
+        [[ -z "$ID_SERIAL" ]] && continue
+        echo "/dev/$devname - $ID_SERIAL"
+    )
+    done
+    
+    echo ""
+    echo -n "Give port (e.g. ttyUSB0)"
+    echo -n ": "
+    read USB_read
+else
+    USB="--port /dev/$1"
+fi
+
+
+if [ -z "$USB_read" ]; then
+    USB=" "
+else
+    USB="--port /dev/$USB_read"
+fi
+
+
+sudo ./esptool.py $USB erase_flash

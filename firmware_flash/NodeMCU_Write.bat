@@ -1,0 +1,1 @@
+python esptool.py --port COM5 -b 115200 write_flash -fm dio 0x00000 nodemcu-master-17-modules-2016-11-17-11-18-27-integer.bin 0x3fc000 esp_init_data_default.bin

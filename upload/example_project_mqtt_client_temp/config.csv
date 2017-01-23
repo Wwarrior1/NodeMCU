@@ -1,0 +1,2 @@
+source_files_basedir,files_upload_config_file,port,compile,verbose
+..,build_mqtt_temp.csv,/dev/ttyUSB1,true
