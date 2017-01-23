@@ -13,7 +13,9 @@ and the root directory where to search for the files to upload.
 #### In order to specify which files to upload, you need to provide information in "*.csv" files of three-level tree hierarchy:
 
 1) **Primary file:** general upload configuration file ("config.csv") in root directory
+
 2) **Secondary files:** contain information about which groups of files to upload (eg. "build1.csv")
+
 3) **Ternary files:** contain list of filenames to include in the group of files for upload (eg. commons.csv)
    they must be placed inside the "configs" directory
 
@@ -63,23 +65,27 @@ port (string) -----------------(default="COM4") port name for the serial interfa
 #### Example contents of files:
 
 * file ***config.csv*** - primary file:
+
     ```
     source_files_basedir,files_upload_config_file,port,baud_rate,compile,restart,dofile,verbose,wipe,echo,delay
     ..,build1.csv,COM4,115200
     ```
 * file ***build1.csv*** - secondary file:
+
     ```
     upload_spec_file,compile,restart,dofile,verbose,wipe,echo,delay,source_files_basedir
     mqttclient_nokia.csv
     mqttclient_custom.csv
     ```
 * file ***configs/mqttclient_nokia.csv*** - ternary file:
+
     ```
     file,compile,restart,dofile
     basic.lua,true,,true
     main_mqttclient.lua
     ```
 * file ***configs/mqttclient_custom.csv*** - ternary file:
+
     ```
     file,compile,restart,dofile
     sonic_sensor.lua
