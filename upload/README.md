@@ -1,4 +1,4 @@
-# Usage:
+## Usage
 ```
 py upload.py
 ```
@@ -6,7 +6,7 @@ py upload.py
 ## Requirements
 ***luatool.py*** script inside "./lib" in relation to the ***upload.py*** file - available [here](https://github.com/4refr0nt/luatool).
 
-## This tool is for easy uploading predefined list of files from the project to the NodeMCU flash.
+## This tool is for easy uploading predefined list of files from the project to the NodeMCU flash
 You need to specify serial connection parameters, which files to upload
 and the root directory where to search for the files to upload.
 
