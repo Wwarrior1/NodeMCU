@@ -1,10 +1,9 @@
 # NodeMCU
-*NodeMCU examples and university project*
+*NodeMCU example modules and university project*
 
-**Read our Wiki pages to get more information.** Shortened version is below.
-- - -
+**Read our Wiki pages to get more information** (shortened version is below).
 
-In order to run your code on NodeMCU:
+#### In order to run your code on NodeMCU:
 
 * You need to flash the current firmware if you use your NodeMCU for the first time.
   - You can find detailed guidance on this page: https://nodemcu.readthedocs.io/en/master/en/flash/
