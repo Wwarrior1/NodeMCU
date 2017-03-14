@@ -1,7 +1,7 @@
-This repository was moved from another version control system
-
 # NodeMCU
-*NodeMCU example modules and university project*
+#### *IoT board NodeMCU - university project and examples*
+
+*Note: This repository was moved from another version control system*
 
 **Watch our project on [YouTube](https://youtu.be/0UnUoXtbh8c) !**
 
